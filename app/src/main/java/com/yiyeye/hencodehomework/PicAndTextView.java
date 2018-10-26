@@ -40,17 +40,21 @@ public class PicAndTextView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawBitmap(bitmap,getWidth()/2 - 200,getHeight()/2 - 200,paint);
+        canvas.drawBitmap(bitmap,getWidth() - bitmap.getWidth(), 200,paint);
 
         int start = 0;
-
-
-        int end = paint.breakText(text,start,text.length(),true,getWidth(),measuredWidth);
-        canvas.drawText(text,start,end,0,80,paint);
-        start = end;
-
-        end = paint.breakText(text,start,text.length(),true,getWidth(),measuredWidth);
-        canvas.drawText(text,start,end,0,80 + paint.getLetterSpacing(),paint);
+        int startY = 80;
+        boolean isCoutinue = true;
+        while (isCoutinue){
+            int end = paint.breakText(text,start,text.length()
+                    ,true,
+                    startY > 200 && startY < 200 + bitmap.getHeight() ? getWidth() - bitmap.getWidth() :  getWidth(),
+                    measuredWidth);
+            canvas.drawText(text,start,start += end,0,startY,paint);
+            startY += paint.getFontSpacing();
+            if (end <= 0)
+                isCoutinue = false;
+        }
     }
 
     private Bitmap getBitmap(int resId, int width){

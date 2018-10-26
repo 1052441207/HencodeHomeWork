@@ -9,7 +9,7 @@
     tools:context="com.yiyeye.hencodehomework.MainActivity">
 
 
-    <com.yiyeye.hencodehomework.PicAndTextView
+    <com.yiyeye.hencodehomework.TransView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
