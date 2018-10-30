@@ -6,10 +6,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:context="com.yiyeye.hencodehomework.MainActivity">
 
 
     <com.yiyeye.hencodehomework.TransView
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

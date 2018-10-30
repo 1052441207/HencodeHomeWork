@@ -1,6 +1,7 @@
 package com.yiyeye.hencodehomework;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Camera;
@@ -25,25 +26,57 @@ public class TransView extends View {
 
     private Camera camera = new Camera();
 
+    private float topDegress = 0f;
+
+    private float bottomDegress  = 0f;
+
+    private float picDegress = 0f;
+
     public TransView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
     {
-        bitmap = getBitmap(R.mipmap.icon,200);
+        bitmap = getBitmap(R.mipmap.fei,(int)Utils.dp2px(150));
         matrix.preScale(3,3);
         matrix.preRotate(50,bitmap.getWidth()/2,bitmap.getHeight()/2);
+
+        camera.setLocation(0,0,getResources().getDisplayMetrics().density * 5);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.translate(0,0);
-        camera.rotateX(30);
-        camera.applyToCanvas(canvas);
-        canvas.translate(0 - bitmap.getWidth()/2,0 - bitmap.getHeight()/2);
-        canvas.drawBitmap(bitmap,0,0,paint);
 
+        //上半部分
+        canvas.save();
+        canvas.translate(getWidth()/2 ,getHeight()/2 );
+        canvas.rotate(-picDegress);
+        camera.save();
+        camera.rotateX(topDegress);
+        camera.applyToCanvas(canvas);
+        camera.restore();
+        canvas.clipRect(-bitmap.getWidth(),-bitmap.getHeight(),
+                bitmap.getWidth(),0);
+        canvas.rotate(picDegress);
+        canvas.translate(-(getWidth()/2),-(getHeight()/2));
+        canvas.drawBitmap(bitmap,getWidth()/2  - bitmap.getWidth()/2,getHeight()/2 - bitmap.getHeight()/2,paint);
+        canvas.restore();
+
+        //下半部分
+        canvas.save();
+        canvas.translate(getWidth()/2 - bitmap.getWidth()/2 + bitmap.getWidth()/2,getHeight()/2 - bitmap.getHeight()/2 + bitmap.getHeight()/2  );
+        canvas.rotate(-picDegress);
+        camera.save();
+        camera.rotateX(bottomDegress);
+        camera.applyToCanvas(canvas);
+        camera.restore();
+        canvas.clipRect(-bitmap.getWidth(),0,
+                bitmap.getWidth(), bitmap.getHeight());
+        canvas.rotate(picDegress);
+        canvas.translate(-(getWidth()/2 - bitmap.getWidth()/2 + bitmap.getWidth()/2),-(getHeight()/2 - bitmap.getHeight()/2 + bitmap.getHeight()/2 ));
+        canvas.drawBitmap(bitmap,getWidth()/2 - bitmap.getWidth()/2,getHeight()/2 - bitmap.getHeight()/2,paint);
+        canvas.restore();
     }
 
     private Bitmap getBitmap(int resId, int width){
@@ -55,5 +88,32 @@ public class TransView extends View {
         options.inSampleSize = options.outWidth / width;
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),resId,options);
         return bitmap;
+    }
+
+    public float getTopDegress() {
+        return topDegress;
+    }
+
+    public void setTopDegress(float topDegress) {
+        this.topDegress = topDegress;
+        invalidate();
+    }
+
+    public float getBottomDegress() {
+        return bottomDegress;
+    }
+
+    public void setBottomDegress(float bottomDegress) {
+        this.bottomDegress = bottomDegress;
+        invalidate();
+    }
+
+    public float getPicDegress() {
+        return picDegress;
+    }
+
+    public void setPicDegress(float picDegress) {
+        this.picDegress = picDegress;
+        invalidate();
     }
 }

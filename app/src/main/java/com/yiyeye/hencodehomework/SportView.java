@@ -30,8 +30,7 @@ public class SportView extends View {
 
     {
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(Utils.dp2px(5));
+        paint.setStrokeWidth(Utils.dp2px(10));
         paint.setTextSize(Utils.dp2px(20));
         paint.setColor(Color.RED);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -45,6 +44,7 @@ public class SportView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //画外部圆
+        paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.RED);
         canvas.drawCircle(getWidth()/2,getHeight()/2,Utils.dp2px(50),paint);
 
