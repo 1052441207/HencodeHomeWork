@@ -38,12 +38,10 @@ public class TransView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.translate(0,0);
-        camera.rotateX(30);
-        camera.applyToCanvas(canvas);
-        canvas.translate(0 - bitmap.getWidth()/2,0 - bitmap.getHeight()/2);
+
         canvas.drawBitmap(bitmap,0,0,paint);
 
+        canvas.clipRect( 0,0,)
     }
 
     private Bitmap getBitmap(int resId, int width){
