@@ -15,22 +15,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        transView = findViewById(R.id.view);
-
-        ObjectAnimator bottomAnimtor = ObjectAnimator.ofFloat(transView,"bottomDegress",45);
-        bottomAnimtor.setDuration(1500);
-
-        ObjectAnimator topAnimtor = ObjectAnimator.ofFloat(transView,"topDegress",45);
-        topAnimtor.setDuration(1500);
-//        bottomAnimtor.setStartDelay(1000);
-//        bottomAnimtor.start();
-
-        ObjectAnimator cameraRotateAnimtor = ObjectAnimator.ofFloat(transView,"picDegress",270);
-        cameraRotateAnimtor.setDuration(1500);
-
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.setStartDelay(1000);
-        animatorSet.playSequentially(bottomAnimtor,cameraRotateAnimtor,topAnimtor);
-        animatorSet.start();
+//        transView = findViewById(R.id.view);
+//
+//        ObjectAnimator bottomAnimtor = ObjectAnimator.ofFloat(transView,"bottomDegress",-45);
+//        bottomAnimtor.setDuration(1500);
+//
+//        ObjectAnimator topAnimtor = ObjectAnimator.ofFloat(transView,"topDegress",45);
+//        topAnimtor.setDuration(1500);
+////        bottomAnimtor.setStartDelay(1000);
+////        bottomAnimtor.start();
+//
+//        ObjectAnimator cameraRotateAnimtor = ObjectAnimator.ofFloat(transView,"picDegress",270);
+//        cameraRotateAnimtor.setDuration(1500);
+//
+//        AnimatorSet animatorSet = new AnimatorSet();
+//        animatorSet.setStartDelay(1000);
+//        animatorSet.playSequentially(bottomAnimtor,cameraRotateAnimtor,topAnimtor);
+//        animatorSet.start();
     }
 }

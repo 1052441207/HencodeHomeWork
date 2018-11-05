@@ -37,7 +37,7 @@ public class TransView extends View {
     }
 
     {
-        bitmap = getBitmap(R.mipmap.fei,(int)Utils.dp2px(150));
+        bitmap = getBitmap(R.mipmap.icon,(int)Utils.dp2px(150));
         matrix.preScale(3,3);
         matrix.preRotate(50,bitmap.getWidth()/2,bitmap.getHeight()/2);
 
