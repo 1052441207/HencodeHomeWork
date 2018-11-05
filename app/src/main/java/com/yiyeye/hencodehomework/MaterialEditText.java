@@ -1,5 +1,6 @@
 package com.yiyeye.hencodehomework;
 
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -19,6 +20,8 @@ public class MaterialEditText extends android.support.v7.widget.AppCompatEditTex
     private float alertTextSize = Utils.dp2px(15);
 
     private float offsetY;
+
+    private int alphaValue;
 
     private String content;
 
@@ -41,10 +44,15 @@ public class MaterialEditText extends android.support.v7.widget.AppCompatEditTex
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 content = charSequence.toString();
-                if (!TextUtils.isEmpty(content)){
-                    showAlert();
+
+                if (charSequence.length() > 0){
+                    if (isFirstChange){
+                        showAlert();
+                        isFirstChange = false;
+                    }
                 }else {
                     dismissAlert();
+                    isFirstChange = true;
                 }
             }
 
@@ -58,27 +66,44 @@ public class MaterialEditText extends android.support.v7.widget.AppCompatEditTex
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        paint.setAlpha(alphaValue);
         String hintText =  getHint().toString();
         canvas.drawText(hintText,0,offsetY,paint);
     }
 
 
     private ObjectAnimator showAnimator,dismissAnimator;
+    private ObjectAnimator showAlphaAnimator,dismissAlphaAnimator;
 
     private void showAlert(){
         if (showAnimator == null){
-            showAnimator = ObjectAnimator.ofFloat(this,"offsetY",getHeight(),(alertTextSize + Utils.dp2px(5)));
-            showAnimator.setDuration(2000);
+            showAnimator = ObjectAnimator.ofFloat(this,"offsetY",getHeight() - alertTextSize - getPaddingBottom(),(alertTextSize + Utils.dp2px(5)));
         }
-        showAnimator.start();
+
+        if (showAlphaAnimator == null){
+            showAlphaAnimator = ObjectAnimator.ofInt(this,"alphaValue",0,100);
+        }
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.setDuration(1000);
+        animatorSet.playTogether(showAnimator,showAlphaAnimator);
+        animatorSet.start();
     }
 
     private void dismissAlert(){
         if (dismissAnimator == null){
-            dismissAnimator = ObjectAnimator.ofFloat(this,"offsetY",(alertTextSize + Utils.dp2px(5)),getHeight());
+            dismissAnimator = ObjectAnimator.ofFloat(this,"offsetY",(alertTextSize + Utils.dp2px(5)),getHeight() - alertTextSize - getPaddingBottom());
             dismissAnimator.setDuration(2000);
         }
-        dismissAnimator.start();
+
+        if (dismissAlphaAnimator == null){
+            dismissAlphaAnimator = ObjectAnimator.ofInt(this,"alphaValue",100,0);
+        }
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.setDuration(1000);
+        animatorSet.playTogether(dismissAnimator,dismissAlphaAnimator);
+        animatorSet.start();
     }
 
     public float getOffsetY() {
@@ -87,5 +112,14 @@ public class MaterialEditText extends android.support.v7.widget.AppCompatEditTex
 
     public void setOffsetY(float offsetY) {
         this.offsetY = offsetY;
+        invalidate();
+    }
+
+    public int getAlphaValue() {
+        return alphaValue;
+    }
+
+    public void setAlphaValue(int alphaValue) {
+        this.alphaValue = alphaValue;
     }
 }

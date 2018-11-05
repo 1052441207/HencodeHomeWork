@@ -15,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        transView = findViewById(R.id.view);
-//
+        //transView = findViewById(R.id.view);
+
 //        ObjectAnimator bottomAnimtor = ObjectAnimator.ofFloat(transView,"bottomDegress",-45);
 //        bottomAnimtor.setDuration(1500);
 //

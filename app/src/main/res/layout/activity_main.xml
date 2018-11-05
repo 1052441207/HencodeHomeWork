@@ -6,46 +6,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yiyeye.hencodehomework.MainActivity">
+    tools:context="com.yiyeye.hencodehomework.MainActivity"
+    >
 
-
-    <com.yiyeye.hencodehomework.TagLayout
-        android:id="@+id/view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
-
-        <com.yiyeye.hencodehomework.CustomTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            />
-        <com.yiyeye.hencodehomework.CustomTextView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            />
-
-        <com.yiyeye.hencodehomework.CustomTextView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            />
-
-        <com.yiyeye.hencodehomework.CustomTextView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            />
-
-        <com.yiyeye.hencodehomework.CustomTextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            />
-
-    </com.yiyeye.hencodehomework.TagLayout>
-
-
+   <com.yiyeye.hencodehomework.MaterialEditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="姓名"
+       />
 
 </LinearLayout>
