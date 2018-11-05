@@ -40,8 +40,6 @@ public class TransView extends View {
         super.onDraw(canvas);
 
         canvas.drawBitmap(bitmap,0,0,paint);
-
-        canvas.clipRect( 0,0,)
     }
 
     private Bitmap getBitmap(int resId, int width){
