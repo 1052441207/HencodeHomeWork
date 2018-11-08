@@ -7,12 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.yiyeye.hencodehomework.MainActivity"
+    android:background="@color/colorAccent"
     >
 
-   <com.yiyeye.hencodehomework.MaterialEditText
+   <com.yiyeye.hencodehomework.ScalAbleImageView
+       android:id="@+id/view"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:hint="姓名"
+       android:layout_height="match_parent"
        />
 
 </LinearLayout>
